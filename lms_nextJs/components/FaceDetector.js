@@ -31,7 +31,7 @@ export const startFaceDetection = async (currentPath) => {
           const expressions = detections[0].expressions;
           console.log("Detected Emotions:", expressions);
 
-          if (expressions.sad > 0.05 || expressions.angry>0.05 || expressions.fearful>0.05) {
+          if (expressions.sad > 0.5 || expressions.angry>0.5 || expressions.fearful>0.5) {
             console.log("User is sad. Opening Poki...");
             navigateToWebsite("https://poki.com/en/online");
           }

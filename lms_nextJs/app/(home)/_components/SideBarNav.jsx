@@ -27,12 +27,6 @@ function SideBarNav({toggleSideBar}) {
             icon:Shield,
             path:'/membership'
         },
-        {
-            id:4,
-            name:'Newsletter',
-            icon:Mail,
-            path:'/newsletter'
-        },
     ]
     const [activeIndex,setActiveIndex]=useState(0);
   return (
@@ -44,6 +38,8 @@ function SideBarNav({toggleSideBar}) {
             className='rounded-full '
             width={100}
             height={50}
+            style={{ width: "auto", height: "auto" }}
+            priority
             />
         </div>
         <div className='flex flex-col '>
@@ -52,7 +48,13 @@ function SideBarNav({toggleSideBar}) {
                 p-4 px-6 text-gray-500
                 hover:bg-gray-100 cursor-pointer
                 ${pathName==item.path?'bg-purple-50 text-purple-800':null}`}
-                onClick={()=>{setActiveIndex(index);toggleSideBar(false)}}>
+                onClick={() => {
+                    if (typeof toggleSideBar === "function") {
+                        toggleSideBar(false);
+                    }
+                    setActiveIndex(index);
+                }}                
+                >
                     <item.icon/>
                     <h2>{item.name}</h2>
                 </Link>
